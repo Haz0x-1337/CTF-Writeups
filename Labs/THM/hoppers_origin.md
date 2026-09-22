@@ -1,10 +1,13 @@
 ---
-lab: "Hopper Origin"
-date: "2026-09-05"
-platform: "TryHackMe"
-difficulty: "Insane"
+lab: Hoppers Origin
+date: 2026-09-05
+platform: TryHackMe
+difficulty: Insane
 ---
-# ROOM LINK: https://tryhackme.com/room/ho-aoc2025-yboMoPbnEX
+# Room link: https://tryhackme.com/room/ho-aoc2025-yboMoPbnEX
+
+![](../Attachments/Pasted%20image%2020260923030252.png)
+
 # Recon
 
 ```bash
