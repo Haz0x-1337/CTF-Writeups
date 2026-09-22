@@ -4,6 +4,9 @@ date: "2026-09-20"
 platform: "TryHackMe"
 difficulty: "Medium"
 ---
+# Room link: https://tryhackme.com/room/dead-drop
+
+![](../Attachments/Pasted%20image%2020260923031043.png)
 
 ![](Pasted%20image%2020260920171812.png)
 
