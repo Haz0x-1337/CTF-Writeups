@@ -118,7 +118,9 @@ root@socbot3000:/root/.ssh# ssh -i id_ed25519 socbot3000@10.200.171.11
 Enter passphrase for key 'id_ed25519': 
 ```
 
-I tried to use the root key and used the hostname as the user for the newly discovered host. It asked for a passphrase which means it is valid.
+I tried to use the root key and used the hostname as the user for the newly discovered host as per my previous encounters. It asked for a passphrase which means it is valid.
+
+I used `ssh2john.py` to convert the key to a hash format that `JohnTheRipper` will understand. Then used `JohnTheRipper` to crack the `passphrase`.
 
 ```
 $ ssh2john root_key > root_key.hash
