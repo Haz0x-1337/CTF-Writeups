@@ -1,0 +1,7 @@
+# Obsidian config
+.obsidian/
+
+# OS files
+.DS_Store
+Thumbs.db
+hydra.restore
