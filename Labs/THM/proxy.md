@@ -4,6 +4,11 @@ date: "2026-09-22"
 platform: "TryHackMe"
 difficulty: "Medium"
 ---
+# Room link: https://tryhackme.com/room/proxychallenge
+
+![](../Attachments/Pasted%20image%2020260923031129.png)
+
+
 ```bash
 PORT      STATE SERVICE       VERSION
 53/tcp    open  domain        Simple DNS Plus
