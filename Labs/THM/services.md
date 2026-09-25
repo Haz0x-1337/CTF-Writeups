@@ -266,6 +266,10 @@ The command completed successfully.
 
 I ran `bloodhound-python` 
 
+```bash
+$ sudo bloodhound-python -d services.local -u j.rock -p 'Serviceworks1' -ns 10.49.185.67 -c All 
+```
+
 ![](../Attachments/Pasted%20image%2020260925143927.png)
 
 ![](../Attachments/Pasted%20image%2020260925144017.png)
