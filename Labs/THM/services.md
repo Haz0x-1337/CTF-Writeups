@@ -4,8 +4,6 @@ date: "2026-09-25"
 platform: "TryHackMe"
 difficulty: "Medium"
 ---
-Website -> Employee names -> contact page exposes user format -> Asrep-roasting unauthenticated -> crack password -> evil-winrm -> services write permission -> change value to cmd command -> seshutdownprivilege -> get flags
-
 # Room link: https://tryhackme.com/room/services
 
 ![](../Attachments/Pasted%20image%2020260925134317.png)
