@@ -429,7 +429,7 @@ Name DNSHostName       SamAccountName DistinguishedName
 FIRE Fire.windcorp.thm FIRE$          CN=FIRE,OU=Domain Controllers,DC=windcorp,DC=thm
 ```
 
-The SamAccountName is `FIRE$`. 
+The SamAccountName is `FIRE$`.  
 
 # Privilege Escalation Process
 
