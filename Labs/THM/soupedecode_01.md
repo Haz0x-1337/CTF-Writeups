@@ -49,6 +49,7 @@ Host script results:
 ```
 
 I added `DC01.SOUPEDECODE.LOCAL` and `SOUPEDECODE.LOCAL` to `/etc/hosts`.
+
 ##### RPC 
 
 Null session is not enabled. 

@@ -1,4 +1,6 @@
 - Ra2
 - Reset
 - Forward
+- Fusion corp
+- ledge
 - 
