@@ -2,5 +2,6 @@
 - Reset
 - Forward
 - Fusion corp
-- ledge
-- 
+- ledger
+- set
+- croccrew
