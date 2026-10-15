@@ -6,11 +6,11 @@ difficulty: "Medium"
 ---
 # Room link: https://tryhackme.com/room/windowsjump
 
-![](../Attachments/Pasted%20image%2020260923031220.png)
+![](Labs/Attachments/Pasted%20image%2020260923031220.png)
 
 This is the flow of lateral movement.
 
-![](../Attachments/Pasted%20image%2020260920202342.png)
+![](Labs/Attachments/Pasted%20image%2020260920202342.png)
 
 ```bash
 PORT      STATE SERVICE       VERSION

