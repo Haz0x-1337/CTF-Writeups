@@ -6,7 +6,7 @@ difficulty: "Easy"
 ---
 # Room link: https://tryhackme.com/room/soupedecode01
 
-![](Labs/Attachments/Pasted%20image%2020260923143422.png)
+![](../Attachments/Pasted%20image%2020260923143422.png)
 
 ```bash
 PORT      STATE SERVICE       VERSION

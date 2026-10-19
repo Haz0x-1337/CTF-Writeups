@@ -6,7 +6,7 @@ difficulty: "Medium"
 ---
 # Room link: https://tryhackme.com/room/devie
 
-![](Labs/Attachments/Pasted%20image%2020261016214545.png)
+![](../Attachments/Pasted%20image%2020261016214545.png)
 
 # Nmap scan
 
@@ -46,19 +46,19 @@ On the `index.html` under `templates`, it defines `InputForm3` defines `xa` and 
 
 I used a simple command injection in `xa`.
 
-![](Labs/Attachments/Pasted%20image%2020261016221829.png)
+![](../Attachments/Pasted%20image%2020261016221829.png)
 
 But I got `500 internal server error` response.
 
-![](Labs/Attachments/Pasted%20image%2020261016221923.png)
+![](../Attachments/Pasted%20image%2020261016221923.png)
 
 A problem is that I have no visual confirmation that this works. I can't make it do anything where It will send back an output to me. 
 
 I ran it on `Burpsuite` and I used time to test if `eval()` is being executed on the backend.
 
-![](Labs/Attachments/Pasted%20image%2020261016222224.png)
+![](../Attachments/Pasted%20image%2020261016222224.png)
 
-![](Labs/Attachments/Pasted%20image%2020261016222415.png)
+![](../Attachments/Pasted%20image%2020261016222415.png)
 
 
 It responded with the same code but the response took 5 seconds to respond which means the input is being executed as a command on the backend. That confirms the `command injection`.
@@ -188,7 +188,7 @@ bruce@ip-10-144-183-146:~$ echo "NEUEDTIeN1MRDg5K" | base64 -d | xxd -p
 
 ### XOR reverse 
 
-![](Labs/Attachments/Pasted%20image%2020261016233528.png)
+![](../Attachments/Pasted%20image%2020261016233528.png)
 
 There it is, `Gordon's` password.
 

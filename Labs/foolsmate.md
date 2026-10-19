@@ -6,7 +6,7 @@ difficulty: "Easy"
 ---
 # Room link: https://tryhackme.com/room/foolsmate
 
-![](Labs/Attachments/Pasted%20image%2020261014022806.png)
+![](../Attachments/Pasted%20image%2020261014022806.png)
 
 # Nmap scan
 
@@ -31,14 +31,14 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Website shows a Mate in one chess puzzle. The problem is that when I move the obvious choice, Rook to A8, a prompt appears that doesn't allow me to finish the puzzle. 
 
-![](Labs/Attachments/Pasted%20image%2020261014023104.png)
+![](../Attachments/Pasted%20image%2020261014023104.png)
 
 I used `Burpsuite` to see if I can modify some request. I moved the Rook from A1 to B1 and capture the request `/api/move` to the repeater.
 
-![](Labs/Attachments/Pasted%20image%2020261014023501.png)
+![](../Attachments/Pasted%20image%2020261014023501.png)
 
 I simply changed `b1` to `a8` which is the move to win the game and send it.
 
-![](Labs/Attachments/Pasted%20image%2020261014023718.png)
+![](../Attachments/Pasted%20image%2020261014023718.png)
 
 Flag obtained. 

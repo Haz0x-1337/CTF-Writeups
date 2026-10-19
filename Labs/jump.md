@@ -6,7 +6,7 @@ difficulty: "Easy"
 ---
 # Room link: https://tryhackme.com/room/jump
 
-![](Labs/Attachments/Pasted%20image%2020261014024455.png)
+![](../Attachments/Pasted%20image%2020261014024455.png)
 
 # Nmap scan
 
@@ -434,7 +434,7 @@ User ops_user may run the following commands on tryhackme-2404:
 
 Looking at `GTFObins`, it shows how to use the binary for privilege escalation.
 
-![](Labs/Attachments/Pasted%20image%2020261016012322.png)
+![](../Attachments/Pasted%20image%2020261016012322.png)
 
 # Root
 

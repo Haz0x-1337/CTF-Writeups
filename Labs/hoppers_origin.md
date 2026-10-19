@@ -6,7 +6,7 @@ difficulty: Insane
 ---
 # Room link: https://tryhackme.com/room/ho-aoc2025-yboMoPbnEX
 
-![](Labs/Attachments/Pasted%20image%2020260923030252.png)
+![](../Attachments/Pasted%20image%2020260923030252.png)
 
 # Recon
 
@@ -81,7 +81,7 @@ uid=1001(web) gid=1001(web) groups=1001(web)
 I used a tool called `ParsingPeas`. It's basically linpeas on steroids. It creates an html file which shows important parts of the 
 
 
-![](Labs/Attachments/Pasted%20image%2020260905182747.png)
+![](../Attachments/Pasted%20image%2020260905182747.png)
 
 Now there are few critical findings but most of it are new CVEs.
 
@@ -340,13 +340,13 @@ Nmap done: 4 IP addresses (4 hosts up) scanned in 66.05 seconds
 
 I decided to check `10.200.171.101` first because it has `port 80` which is a website. 
 
-![](Labs/Attachments/Pasted%20image%2020260908004346.png)
+![](../Attachments/Pasted%20image%2020260908004346.png)
 
 Basically, this validates printer's LDAP/AD connection. I assume you would need a correct credentials to make this work.
 
 I clicked Test Connection and it said `Bind Successful to 10.200.171.122:389`.
 
-![](Labs/Attachments/Pasted%20image%2020260908004544.png)
+![](../Attachments/Pasted%20image%2020260908004544.png)
 
 I want to see what exactly is happening on that request. 
 
@@ -469,7 +469,7 @@ With a valid credential, I used it to access `RDP` service on `10.200.171.101` m
 
 # Server1
 
-![](Labs/Attachments/Pasted%20image%2020260908100159.png)
+![](../Attachments/Pasted%20image%2020260908100159.png)
 
 ## Server 1 flags
 
@@ -478,17 +478,17 @@ With a valid credential, I used it to access `RDP` service on `10.200.171.101` m
 
 I used a tool called `ParsingPeas`.  It runs `winpeas` and presents it in a website format. Very beginner-friendly and builds a detailed report  about possible `LPE's`.\
 
-![](Labs/Attachments/Pasted%20image%2020260908101527.png)
+![](../Attachments/Pasted%20image%2020260908101527.png)
 
 ### Winpeas enumeration 10.200.171.101
 
-![](Labs/Attachments/Pasted%20image%2020260908102938.png)
+![](../Attachments/Pasted%20image%2020260908102938.png)
 
 This is an `LPE vector`. This basically allows us to install anything with Elevated privileges or Administrator.
 
 User list on this machine.
 
-![](Labs/Attachments/Pasted%20image%2020260908103309.png)
+![](../Attachments/Pasted%20image%2020260908103309.png)
 
 With `AlwaysElevateInstall` settings both set to 1, I went ahead and create a `reverse shell` using `msfvenom`. 
 
@@ -746,25 +746,25 @@ dnshostname                   : Server2.ai.vanchat.loc
 
 Based on the `Get-NetComputer` results, I tried the credentials on `Server2.ai.vanchat.loc` and it worked. 
 
-![](Labs/Attachments/Pasted%20image%2020260908122812.png)
+![](../Attachments/Pasted%20image%2020260908122812.png)
 
 # Server2 
 
-![](Labs/Attachments/Pasted%20image%2020260910010815.png)
+![](../Attachments/Pasted%20image%2020260910010815.png)
 
 These are the users on this machine. 
 
 This time, `AlwaysElevateInstall` is not available. 
 
-![](Labs/Attachments/Pasted%20image%2020260910010856.png)
+![](../Attachments/Pasted%20image%2020260910010856.png)
 
 Based on previous machine, I ran bloodhound and check any connection between `brian` and `lucy.fry`.
 
-![](Labs/Attachments/Pasted%20image%2020260910011726.png)
+![](../Attachments/Pasted%20image%2020260910011726.png)
 
 This is what `GenericAll` allows me to do.
 
-![](Labs/Attachments/Pasted%20image%2020260910011825.png)
+![](../Attachments/Pasted%20image%2020260910011825.png)
 
 With that, I reset `Qw1.lucy.fry's` password. 
 
@@ -777,7 +777,7 @@ After that, tried to spawn `cmd.exe` using `qw1.lucy.fry`.
 
 I found a `keepass database` file. 
 
-![](Labs/Attachments/Pasted%20image%2020260910013001.png)
+![](../Attachments/Pasted%20image%2020260910013001.png)
 
 I exfiltrated the file and confirmed that it is a `keepass file`. I used `JohnTheRipper's module` called `Keepass2John`. 
 
@@ -803,10 +803,10 @@ Session completed.
 
 After opening the vault, it keeps the credential for user `adm`.
 
-![](Labs/Attachments/Pasted%20image%2020260910014301.png)
+![](../Attachments/Pasted%20image%2020260910014301.png)
 
 
-![](Labs/Attachments/Pasted%20image%2020260910021929.png)
+![](../Attachments/Pasted%20image%2020260910021929.png)
 
 ### Server 2  Flag
 
@@ -816,7 +816,7 @@ After opening the vault, it keeps the credential for user `adm`.
 This shows that `SERVER2` machine have `GenericAll` permission to `THMSETUP` user who is an Admin on the `DC1` domain controller.
 
 
-![](Labs/Attachments/Pasted%20image%2020260910230527.png)
+![](../Attachments/Pasted%20image%2020260910230527.png)
 
 I tried many things but `adm` can't do `Active Directory stuff` because its a locally made account. It's not an `AD Object itself`. 
 
@@ -930,7 +930,7 @@ The command completed successfully.
 - user: `THM{REDACTED}`
 - root: `THM{REDACTED}`
 
-![](Labs/Attachments/Pasted%20image%2020260917131936.png)
+![](../Attachments/Pasted%20image%2020260917131936.png)
 
 
 `SameForestTrust` allows any domain in the same forest to issue TGTs (Ticket Granting Tickets) for other domains via the `krbtgt` account hash.
@@ -1077,7 +1077,7 @@ INFO[12866] Starting tunnel to VANCHAT\rdc1bd@RDC1 (0affe044e78f)
 ```
 ##### My rdc1bd User permissions to SERVER3
 
-![](Labs/Attachments/Pasted%20image%2020260917153114.png)
+![](../Attachments/Pasted%20image%2020260917153114.png)
 
 ##### Nmap scan for SERVER 3
 
@@ -1120,7 +1120,7 @@ SERVER3 is a Windows Server 2019 (10.0.17763) with RDP and WinRM open.
 
 I'm an Enterprise Admin User but I'm not authorized to remote login to SERVER3
 
-![](Labs/Attachments/Pasted%20image%2020260917155007.png)
+![](../Attachments/Pasted%20image%2020260917155007.png)
 
 My idea is there is a `Restriction on RDP via Group policy`. I looked up the GPOs set on server3.
 
@@ -1138,19 +1138,19 @@ InheritedGpoLinks     : {SQL Protection Policy, Default Domain Policy}
 
 I looked into what that GPO policy does by saving its contents to an html file.
 
-![](Labs/Attachments/Pasted%20image%2020260917160332.png)
+![](../Attachments/Pasted%20image%2020260917160332.png)
 
 It blocks remote login from the following groups. 
 
 Remove those restrictions
 
-![](Labs/Attachments/Pasted%20image%2020260917161239.png)
+![](../Attachments/Pasted%20image%2020260917161239.png)
 
 It is still not working.
 
 I also tried to reset SERVER3's password and still did not work. I guess my only choice is to make an Admin user non-admin based on this graph.
 
-![](Labs/Attachments/Pasted%20image%2020260917170757.png)
+![](../Attachments/Pasted%20image%2020260917170757.png)
 
 ##### Removing QW0.GRACE.HALL from LEVEL 0 TRUSTEE
 
@@ -1382,7 +1382,7 @@ The command completed successfully.
 
 I went back to `RDC1` to remove the `GPO restriction for remote login` and added `All Domain Users` to `Allow log on through Remote Desktop Services`.
 
-![](Labs/Attachments/Pasted%20image%2020260918175508.png)
+![](../Attachments/Pasted%20image%2020260918175508.png)
 
 For some reason, I can't RDP to server3 from my attack host. I have internal RDP access anyway so I'll stick to it.
 
@@ -1454,7 +1454,7 @@ Active Connections
 
 Also in bloodhound, it shows the `MSSQL SERVICE` on Service Principal Names.
 
-![](Labs/Attachments/Pasted%20image%2020260919011539.png)
+![](../Attachments/Pasted%20image%2020260919011539.png)
 
 ##### SQL Enumeration
 
@@ -1615,7 +1615,7 @@ PS C:\Tools> .\SharpHound.exe -c All --zipfilename tbfc_bloodhound.zip
 
 I query a pathfinding route from `TBFC-SQLSERVER1.TBFC.LOC` to `TBFC-DC1.TBFC.LOC`.
 
-![](Labs/Attachments/Pasted%20image%2020260920022842.png)
+![](../Attachments/Pasted%20image%2020260920022842.png)
 
 `ADCSESC1` = Active Directory Certificate Services (AD CS) misconfiguration allowing privilege escalation.
 
@@ -1669,11 +1669,11 @@ SID               : S-1-5-90-0-2
 
 I looked for other clues and went back to `Bloodhound`. I learned that `SERVER4` have `GenericAll` to a `WebServer`.
 
-![](Labs/Attachments/Pasted%20image%2020260920023851.png)
+![](../Attachments/Pasted%20image%2020260920023851.png)
 
 In my experience, web services on AD environments hints `ADCS attack vector`.
 
-![](Labs/Attachments/Pasted%20image%2020260920030016.png)
+![](../Attachments/Pasted%20image%2020260920030016.png)
 
 This is most likely `ESC1 attack` because of:
 

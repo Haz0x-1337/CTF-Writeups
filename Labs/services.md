@@ -6,7 +6,7 @@ difficulty: "Medium"
 ---
 # Room link: https://tryhackme.com/room/services
 
-![](Labs/Attachments/Pasted%20image%2020260925134317.png)
+![](../Attachments/Pasted%20image%2020260925134317.png)
 
 ```nmap
 PORT     STATE SERVICE       VERSION
@@ -113,13 +113,13 @@ Now at this point, I couldn't find a username.  The good thing is that there is 
 
 ### HTTP
 
-![](Labs/Attachments/Pasted%20image%2020260925140509.png)
+![](../Attachments/Pasted%20image%2020260925140509.png)
 
 Here, they show their team members on `/about.html` endpoint. `Jack Rock` is the obvious the target as he is an `IT STAFF` and the chance that he has access to a computer in the `domain controller` is very high. 
 
 Another problem is the format of their usernames. Fortunately, their `/contact.html` endpoint shows the format of the usernames in the domain. 
 
-![](Labs/Attachments/Pasted%20image%2020260925140712.png)
+![](../Attachments/Pasted%20image%2020260925140712.png)
 
 The format is:
 
@@ -270,13 +270,13 @@ I ran `bloodhound-python`
 $ sudo bloodhound-python -d services.local -u j.rock -p 'Serviceworks1' -ns 10.49.185.67 -c All 
 ```
 
-![](Labs/Attachments/Pasted%20image%2020260925143927.png)
+![](../Attachments/Pasted%20image%2020260925143927.png)
 
-![](Labs/Attachments/Pasted%20image%2020260925144017.png)
+![](../Attachments/Pasted%20image%2020260925144017.png)
 
 Both groups doesn't have any `Outbound Object Control`.  It means I have to enumeration within the shell. I ran `winpeas.exe`
 
-![](Labs/Attachments/Pasted%20image%2020260925144720.png)
+![](../Attachments/Pasted%20image%2020260925144720.png)
 
 This shows that `Server Operators` have `GenericWrite` on most services that is running on the machine. 
 

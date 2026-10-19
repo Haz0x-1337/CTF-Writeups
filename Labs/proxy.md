@@ -6,7 +6,7 @@ difficulty: "Medium"
 ---
 # Room link: https://tryhackme.com/room/proxychallenge
 
-![](Labs/Attachments/Pasted%20image%2020260923031129.png)
+![](../Attachments/Pasted%20image%2020260923031129.png)
 
 
 ```bash
@@ -165,7 +165,7 @@ Questions? Email helpdesk@ctf.local
 
 `IT-Portal.html` 
 
-![](Labs/Attachments/Pasted%20image%2020260922184835.png)
+![](../Attachments/Pasted%20image%2020260922184835.png)
 
 Important stuff to note in these files. 
 
@@ -322,7 +322,7 @@ $ ls -la | grep "json"
 
 This is the vector. `SVC.SCANNER` has `AllowedToDelegate` to the `DC01.CTF.LOCAL`.
 
-![](Labs/Attachments/Pasted%20image%2020260922201322.png)
+![](../Attachments/Pasted%20image%2020260922201322.png)
 
 
 `AllowedToDelegate` allows a user to `impersonate/authenticate` as a user to specific services on a target hosts.

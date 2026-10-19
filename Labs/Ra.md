@@ -6,7 +6,7 @@ difficulty: "Hard"
 ---
 # Room link: https://tryhackme.com/room/ra
 
-![](Labs/Attachments/Pasted%20image%2020260928012152.png)
+![](../Attachments/Pasted%20image%2020260928012152.png)
 
 ```nmap
 PORT     STATE SERVICE                VERSION
@@ -192,20 +192,20 @@ Ldap required a valid credentials before we can do anything.
 
 ## HTTP 
 
-![](Labs/Attachments/Pasted%20image%2020260928013543.png)
+![](../Attachments/Pasted%20image%2020260928013543.png)
 
 
 The website is a company landing page. There is no `login form` but there is a `Reset password`.
 
-![](Labs/Attachments/Pasted%20image%2020260928013659.png)
+![](../Attachments/Pasted%20image%2020260928013659.png)
 
 It shows here that we can reset password with just one security question. This is poor security. To be able to exploit this, we need a valid username and the right answer for the question.
 
 Looking around, I found names of `IT support-staff` and `Employees`.
 
-![](Labs/Attachments/Pasted%20image%2020260928013832.png)
+![](../Attachments/Pasted%20image%2020260928013832.png)
 
-![](Labs/Attachments/Pasted%20image%2020260928013921.png)
+![](../Attachments/Pasted%20image%2020260928013921.png)
 
 Now, if you pay attention to the `Security Questions`, you will notice that one of them is `What is/was your favorite pet's name?`. We can directly link it to `Lily Levesque` because she has a sentiment that `She Loves being able to  bring her bestfriend to work`. It's obviously the dog. 
 
@@ -213,12 +213,12 @@ The problem is that we don't know the dog's name. Poking around elements in the 
 
 If you right click their image and open in new tab. It will show the names in the file name. 
 
-![](Labs/Attachments/Pasted%20image%2020260928014236.png)
+![](../Attachments/Pasted%20image%2020260928014236.png)
 
 username: `lilyle`
 Pet: `Sparky`
 
-![](Labs/Attachments/Pasted%20image%2020260928014440.png)
+![](../Attachments/Pasted%20image%2020260928014440.png)
 
 Now that I have valid credentials, I will continue my enumeration further. 
 
@@ -268,13 +268,13 @@ After this one, I had to scrub over the other shares. It took me some time to sc
 
 With no progress, I started to look into this spark thing. 
 
-![](Labs/Attachments/Pasted%20image%2020260928020303.png)
+![](../Attachments/Pasted%20image%2020260928020303.png)
 
 It's basically a software where users in an Openfire Server can message each other. 
 
 After couple minutes of digging, I found the exact package for `spark 2.8.3.deb` at https://github.com/igniterealtime/Spark/releases/tag/v2.8.3.
 
-![](Labs/Attachments/Pasted%20image%2020260928020532.png)
+![](../Attachments/Pasted%20image%2020260928020532.png)
 
 I downloaded the `spark_2_8_3.tar.gz`. 
 
@@ -291,21 +291,21 @@ $ cd Spark
 $ ./Spark
 ```
 
-![](Labs/Attachments/Pasted%20image%2020260928021259.png)
+![](../Attachments/Pasted%20image%2020260928021259.png)
 
 Always remember, Software in machines screams vulnerability.  The latest version of this software is `Spark 3.0.2`. That means this old one should have a vulnerability, we just need to look for it.
 
 # CVE 2020-12772
 
- ![](Labs/Attachments/Pasted%20image%2020260928021559.png)
+ ![](../Attachments/Pasted%20image%2020260928021559.png)
 
 That's a very dangerous vulnerability. Basically, the software doesn't have proper sanitization of input at the time. 
 
-![](Labs/Attachments/Pasted%20image%2020260928021755.png)
+![](../Attachments/Pasted%20image%2020260928021755.png)
 
 It says that we have to send a message to someone within the server but there are thousands of users in the domain when i use `--rid-brute`. I tried to refer back to the old photo of `IT-Staffs`.
 
-![](Labs/Attachments/Pasted%20image%2020260928013832.png)
+![](../Attachments/Pasted%20image%2020260928013832.png)
 
 Do you notice which one is online? Your right. Its `Buse Candan`. If we were to get an `NTLM hash`, It should be from someone authenticated within the domain at the moment of exploitation.
 
@@ -324,7 +324,7 @@ $ sudo responder -I tun0 -v
 
 Then trigger the payload message to `Buse Candan` and wait for the `NTLM hash`. 
 
-![](Labs/Attachments/Pasted%20image%2020260928022521.png)
+![](../Attachments/Pasted%20image%2020260928022521.png)
 
 Saved the hash as `buse_hash` then crack it with `JohnTheRipper`. 
 

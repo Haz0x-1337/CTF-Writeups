@@ -6,7 +6,7 @@ difficulty: "Easy"
 ---
 # Room link: https://tryhackme.com/room/lookback
 
-![](Labs/Attachments/Pasted%20image%2020261017222921.png)
+![](../Attachments/Pasted%20image%2020261017222921.png)
 
 # Nmap scan
 
@@ -39,11 +39,11 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Port 80 is inaccessible. This is Port 443. 
 
-![](Labs/Attachments/Pasted%20image%2020261017225224.png)
+![](../Attachments/Pasted%20image%2020261017225224.png)
 
 I tried default credentials but it says it doesn't have a mailbox.
 
-![](Labs/Attachments/Pasted%20image%2020261018000425.png)
+![](../Attachments/Pasted%20image%2020261018000425.png)
 # Fuzz
 
 I used `ffuf` to perform directory fuzzing.
@@ -69,21 +69,21 @@ on the `/test` directory, it contains the first flag.
 
 # Service flag
 
-![](Labs/Attachments/Pasted%20image%2020261017225456.png)
+![](../Attachments/Pasted%20image%2020261017225456.png)
 
 Notice that there is a `Run` button. When I clicked it, it gives an output. 
 
-![](Labs/Attachments/Pasted%20image%2020261017230101.png)
+![](../Attachments/Pasted%20image%2020261017230101.png)
 
 I can't  really make anything off of that so I tried `id`.
 
-![](Labs/Attachments/Pasted%20image%2020261017230139.png)
+![](../Attachments/Pasted%20image%2020261017230139.png)
 
 This is interesting. The button performs `Get-Content C:\<input>`. I can read sensitive files with this.
 
 Using `Wappalyzer`, it shows the framework of the web page which is `ASP.net`.
 
-![](Labs/Attachments/Pasted%20image%2020261017230521.png)
+![](../Attachments/Pasted%20image%2020261017230521.png)
 
 ## inetpub\wwwroot\web.config
 
@@ -146,15 +146,15 @@ Using `Wappalyzer`, it shows the framework of the web page which is `ASP.net`.
 
 It allows me to read specific files but it won't allow generic directory listing. 
 
-![](Labs/Attachments/Pasted%20image%2020261017233040.png)
+![](../Attachments/Pasted%20image%2020261017233040.png)
 
 This output gave me an idea. Escaping the function string by adding `')` and the end and add a separator `;` then add an actual command. 
 
-![](Labs/Attachments/Pasted%20image%2020261017233624.png)
+![](../Attachments/Pasted%20image%2020261017233624.png)
 
 Okay, it gave me a different error about a missing terminator.
 
-![](Labs/Attachments/Pasted%20image%2020261017234029.png)
+![](../Attachments/Pasted%20image%2020261017234029.png)
 
 After testing few ones, this payload worked because the `')` closes the quote and function call. Now the semicolon is outside quotes, so the 2nd command runs as a separate command. The `; ('` at the end fixes the syntax error.
 
@@ -188,7 +188,7 @@ Mode                LastWriteTime         Length Name
 -a----        2/12/2023  11:53 AM             29 user.txt
 ```
 
-![](Labs/Attachments/Pasted%20image%2020261017234700.png)
+![](../Attachments/Pasted%20image%2020261017234700.png)
 
 # TODO.txt
 
