@@ -8,7 +8,7 @@ difficulty: "Medium"
 
 ![](Labs/Attachments/Pasted%20image%2020260923031043.png)
 
-![](Pasted%20image%2020260920171812.png)
+![](Labs/Attachments/Pasted%20image%2020260920171812.png)
 
 # DMZ - WebServer
 
@@ -27,7 +27,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ### WebServer homepage
 
-![](Pasted%20image%2020260920171826.png)
+![](Labs/Attachments/Pasted%20image%2020260920171826.png)
 
 Login page was bypassed using `SQL Injection`.
 
@@ -37,7 +37,7 @@ Payload:
 
 I'm logged in as `admin` and it looks like a file upload page. 
 
-![](Pasted%20image%2020260920171841.png)
+![](Labs/Attachments/Pasted%20image%2020260920171841.png)
 
  Usually, if an upload feature on a web application is not properly secured, it could lead to `Remote Code Execution`. 
  
