@@ -5,7 +5,7 @@ platform: TryHackMe
 difficulty: Medium
 tags:
   - Linux
-summary: Unauthenticated Python eval() command injection provided initial access, followed by reverse-engineering an XOR encryption key for user pivoting and abusing a root cron job symlink to overwrite /etc/passwd for full root compromise.
+summary: "Unauthenticated Python eval() command injection provided initial access, followed by reverse-engineering an XOR encryption key for user pivoting and abusing a root cron job symlink to overwrite /etc/passwd for full root compromise."
 draft: false
 ---
 # Room link: https://tryhackme.com/room/devie
