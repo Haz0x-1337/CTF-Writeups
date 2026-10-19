@@ -1,8 +1,12 @@
 ---
-lab: "Dead Drop"
-date: "2026-09-20"
-platform: "TryHackMe"
-difficulty: "Medium"
+title: Dead Drop
+date: 2026-09-20
+platform: TryHackMe
+difficulty: Medium
+tags:
+  - Active Directory
+summary: Initial access via SQL injection led to credential extraction and full Domain Controller compromise through local privilege escalation.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/dead-drop
 
@@ -197,12 +201,12 @@ sqlite> .tables
 users
 
 sqlite> select * from users;
-╭────┬────────────┬───────────────────╮
-│ id │  username  │     password      │
-╞════╪════════════╪═══════════════════╡
-│  1 │ admin      │ {REDACTED}        │
-│  2 │ svc-backup │ {REDACTED}        │
-╰────┴────────────┴───────────────────╯
+â•­â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â•®
+â”‚ id â”‚  username  â”‚     password      â”‚
+â•žâ•â•â•â•â•ªâ•â•â•â•â•â•â•â•â•â•â•â•â•ªâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•¡
+â”‚  1 â”‚ admin      â”‚ {REDACTED}        â”‚
+â”‚  2 â”‚ svc-backup â”‚ {REDACTED}        â”‚
+â•°â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â•¯
 
 ```
 
@@ -265,16 +269,16 @@ $ sudo ip r add 192.168.11.200/32 via 192.168.21.1 dev tun0 metric 1000
 ##### LIGOLO
 
 ```bash
-ligolo-ng » interface_create --name deaddrop
+ligolo-ng Â» interface_create --name deaddrop
 INFO[0128] Creating a new deaddrop interface...
 
-ligolo-ng » route_add --name deaddrop --route 192.168.11.0/24
+ligolo-ng Â» route_add --name deaddrop --route 192.168.11.0/24
 INFO[0150] Route created. 
 
-ligolo-ng » session
+ligolo-ng Â» session
 ? Specify a session : 1 - svc-drop@tryhackme-2404 - 192.168.11.200:47588 - 06ffca581435
 
-[Agent : svc-drop@tryhackme-2404] » tunnel_start --tun deaddrop
+[Agent : svc-drop@tryhackme-2404] Â» tunnel_start --tun deaddrop
 INFO[0175] Starting tunnel to svc-drop@tryhackme-2404 (06ffca581435) 
 
 ```
@@ -504,26 +508,26 @@ $ smbclient //192.168.11.100/SYSVOL -U 'j.harris' -p '{REDACTED}'
 
 $ tree .
 .
-├── DfsrPrivate
-├── Policies
-│   ├── {31B2F340-016D-11D2-945F-00C04FB984F9}
-│   │   ├── GPT.INI
-│   │   ├── MACHINE
-│   │   │   ├── Microsoft
-│   │   │   │   └── Windows NT
-│   │   │   │       └── SecEdit
-│   │   │   │           └── GptTmpl.inf
-│   │   │   └── Registry.pol
-│   │   └── USER
-│   └── {6AC1786C-016F-11D2-945F-00C04fB984F9}
-│       ├── GPT.INI
-│       ├── MACHINE
-│       │   └── Microsoft
-│       │       └── Windows NT
-│       │           └── SecEdit
-│       │               └── GptTmpl.inf
-│       └── USER
-└── scripts
+â”œâ”€â”€ DfsrPrivate
+â”œâ”€â”€ Policies
+â”‚Â Â  â”œâ”€â”€ {31B2F340-016D-11D2-945F-00C04FB984F9}
+â”‚Â Â  â”‚Â Â  â”œâ”€â”€ GPT.INI
+â”‚Â Â  â”‚Â Â  â”œâ”€â”€ MACHINE
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ Microsoft
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â””â”€â”€ Windows NT
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â      â””â”€â”€ SecEdit
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â          â””â”€â”€ GptTmpl.inf
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â””â”€â”€ Registry.pol
+â”‚Â Â  â”‚Â Â  â””â”€â”€ USER
+â”‚Â Â  â””â”€â”€ {6AC1786C-016F-11D2-945F-00C04fB984F9}
+â”‚Â Â      â”œâ”€â”€ GPT.INI
+â”‚Â Â      â”œâ”€â”€ MACHINE
+â”‚Â Â      â”‚Â Â  â””â”€â”€ Microsoft
+â”‚Â Â      â”‚Â Â      â””â”€â”€ Windows NT
+â”‚Â Â      â”‚Â Â          â””â”€â”€ SecEdit
+â”‚Â Â      â”‚Â Â              â””â”€â”€ GptTmpl.inf
+â”‚Â Â      â””â”€â”€ USER
+â””â”€â”€ scripts
 
 16 directories, 5 files
 

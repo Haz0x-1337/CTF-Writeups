@@ -1,8 +1,12 @@
 ---
-lab: "Lookback"
-date: "2026-10-17"
-platform: "TryHackMe"
-difficulty: "Easy"
+title: Lookback
+date: 2026-10-17
+platform: TryHackMe
+difficulty: Easy
+tags:
+  - Linux
+summary: Initial access was achieved by exploiting a PowerShell command injection vulnerability within a web-based log analyzer endpoint to execute code. Full system compromise was then completed by leveraging Microsoft Exchange ProxyShell (RCE).
+draft: false
 ---
 # Room link: https://tryhackme.com/room/lookback
 

@@ -1,8 +1,11 @@
 ---
-lab: "Proxy"
+title: "Proxy"
 date: "2026-09-22"
 platform: "TryHackMe"
 difficulty: "Medium"
+tags: ["Windows"]
+summary: Unauthenticated write access on an SMB share was exploited to coerce authentication from an automated scanning service and crack an NetNTLMv2 hash. Constrained delegation on the service account was then leveraged to forge a Kerberos service ticket impersonating Administrator for full domain compromise.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/proxychallenge
 
@@ -233,7 +236,7 @@ I got 2 credentials but they have the `same permissions` as `guest`.
 
 Connecting the dots:
 
-`WRITE access on IT-Shared` → `SVC.SCANNER scans the share every 2 minutes` → `Scanner executes shell commands`
+`WRITE access on IT-Shared` â†’ `SVC.SCANNER scans the share every 2 minutes` â†’ `Scanner executes shell commands`
 
 Because the scanner `processes shell commands`, we can attempt to trigger `forced SMB authentication` by supplying an `SMB/UNC path` pointing to a server we control. When the scanner accesses the path, its Windows account may `automatically initiate SMB authentication to our server`, allowing us to `capture the resulting NetNTLM authentication material`.
 

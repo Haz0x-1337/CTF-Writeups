@@ -1,8 +1,11 @@
 ---
-lab: "Windows Jump"
+title: "Windows Jump"
 date: "2026-09-20"
 platform: "TryHackMe"
 difficulty: "Medium"
+tags: ["Windows"]
+summary: Initial access was gained by discovering plaintext login details inside a publicly accessible SMB share. Lateral movement was achieved by extracting stored AutoLogon credentials from the Registry and overwriting a weakly permissioned service executable to elevate access. Full compromise as `NT AUTHORITY\SYSTEM` was finalized by hijacking a scheduled task batch file that possessed weak write permissions.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/windowsjump
 

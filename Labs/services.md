@@ -1,8 +1,11 @@
 ---
-lab: "Services"
+title: "Services"
 date: "2026-09-25"
 platform: "TryHackMe"
 difficulty: "Medium"
+tags: ["Windows"]
+summary: Initial access was achieved via AS-REP roasting. Identified through website OSINT. Operator account abused to modify the binary path of the Print Spooler service to extract the flag upon rebooting the system.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/services
 

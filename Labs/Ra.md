@@ -1,8 +1,11 @@
 ---
-lab: "Ra"
+title: "Ra"
 date: "2026-09-28"
 platform: "TryHackMe"
 difficulty: "Hard"
+tags: ["Active Directory"]
+summary: Initial access was gained by abusing a web password reset vulnerability using OSINT, followed by capturing and cracking NetNTLMv2 hash via an HTML injection vulnerability in the Spark chat client (CVE-2020-12772). Domain compromise was achieved by exploiting `sAMAccountName` spoofing (noPac) to impersonate Administrator and perform a DCSync.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/ra
 

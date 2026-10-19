@@ -1,8 +1,12 @@
 ---
-lab: "Devie"
-date: "2026-10-16"
-platform: "TryHackMe"
-difficulty: "Medium"
+title: Devie
+date: 2026-10-16
+platform: TryHackMe
+difficulty: Medium
+tags:
+  - Linux
+summary: Unauthenticated Python eval() command injection provided initial access, followed by reverse-engineering an XOR encryption key for user pivoting and abusing a root cron job symlink to overwrite /etc/passwd for full root compromise.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/devie
 
@@ -145,9 +149,9 @@ So I can't read the script, I don't really know what it is doing but the good th
 
 Always remember that XOR is symmetrical.
 
-- plaintext ⊕ key = cipher_text
-- cipher_text ⊕ plaintext = key
-- cipher_text ⊕ key = plaintext
+- plaintext âŠ• key = cipher_text
+- cipher_text âŠ• plaintext = key
+- cipher_text âŠ• key = plaintext
 
 ## Privilege Escalation
 
@@ -177,7 +181,7 @@ Now with that key found, I can now decrypt password of `Gordon`.
 
 ### Gordon password
 
-Remember, `cipher_text ⊕ key = plaintext`. `base64.decode` the ciphertext before the XOR. 
+Remember, `cipher_text âŠ• key = plaintext`. `base64.decode` the ciphertext before the XOR. 
 
 ### base64 decode
 

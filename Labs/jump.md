@@ -1,8 +1,12 @@
 ---
-lab: "Jump"
-date: "2026-10-14"
-platform: "TryHackMe"
-difficulty: "Easy"
+title: Jump
+date: 2026-10-14
+platform: TryHackMe
+difficulty: Easy
+tags:
+  - Linux
+summary: Initial access via FTP pipeline injection led to root compromise through chained script write-privileges, systemd PATH hijacking, and sudo less.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/jump
 
@@ -256,12 +260,12 @@ THM{REDACTED}
 A writable service PATH was found using `linpeas.sh`. The name of the service is `healthcheck.service`.
 
 ```bash
-╔══════════╣ Systemd Information (T1543.002)
-╚ https://book.hacktricks.wiki/en/linux-hardening/linux-basics/linux-privilege-escalation/index.html#systemd-path---relative-paths                        
-═╣ Systemd release (verify package fixes)? .......... 255                                              
-═╣ Services running as root? ..... 
-═╣ Running services with dangerous capabilities? ... 
-═╣ Services with writable paths? . healthcheck.service: Writable service PATH entry '/opt/dev/bin'
+â•”â•â•â•â•â•â•â•â•â•â•â•£ Systemd Information (T1543.002)
+â•š https://book.hacktricks.wiki/en/linux-hardening/linux-basics/linux-privilege-escalation/index.html#systemd-path---relative-paths                        
+â•â•£ Systemd release (verify package fixes)? .......... 255                                              
+â•â•£ Services running as root? ..... 
+â•â•£ Running services with dangerous capabilities? ... 
+â•â•£ Services with writable paths? . healthcheck.service: Writable service PATH entry '/opt/dev/bin'
 ```
 
 ```bash

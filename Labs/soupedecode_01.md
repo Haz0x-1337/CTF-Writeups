@@ -1,8 +1,11 @@
 ---
-lab: "Soupedecode 01"
+title: "Soupedecode 01"
 date: "2026-09-23"
 platform: "TryHackMe"
 difficulty: "Easy"
+tags: ["Windows"]
+summary: RID-bruteforcing domain accounts and performing a password spray compromised a standard user account, providing read access to internal shares. Subsequent Kerberoasting against domain service accounts revealed tickets that were cracked to compromise a service account. This service account provided access to a restricted backup share containing exported machine account hashes. Utilizing one of the extracted machine account hashes via Pass-the-Hash established an administrative session to retrieve the root flag.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/soupedecode01
 
@@ -336,10 +339,10 @@ MonitoringServer$:2129:aad3b435b51404eeaad3b435b51404ee:{REDACTED}:::
 
 Now note that these are service accounts. That means that each of these accounts have their own purposes meaning they can `only access certain stuff` such as:
 
-- `WebServer$` → access IIS, web apps
-- `DatabaseServer$` → SQL Server access
-- `FileServer$` → SMB shares
-- `MailServer$` → Exchange services
+- `WebServer$` â†’ access IIS, web apps
+- `DatabaseServer$` â†’ SQL Server access
+- `FileServer$` â†’ SMB shares
+- `MailServer$` â†’ Exchange services
 
 I used `FileServer` and perform a `Pass-The-Hash attack` in `Evil-WinRM`
 

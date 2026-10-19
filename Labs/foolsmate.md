@@ -1,8 +1,12 @@
 ---
-lab: "Foolsmate"
-date: "2026-10-14"
-platform: "TryHackMe"
-difficulty: "Easy"
+title: Foolsmate
+date: 2026-10-14
+platform: TryHackMe
+difficulty: Easy
+tags:
+  - Web
+summary: Parameter tampering on the /api/move request via Burp Suite bypassed client-side validation to submit the winning chess move and retrieve the flag.
+draft: false
 ---
 # Room link: https://tryhackme.com/room/foolsmate
 
