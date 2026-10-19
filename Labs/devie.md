@@ -30,7 +30,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Website is like some calculator with formula for different math problem.
 
-![](Labs/Attachments/Pasted%20image%2020261016221336.png)
+![](../Attachments/Pasted%20image%2020261016221336.png)
 
 I downloaded the source code and it showed for 5 total python files. 
 
