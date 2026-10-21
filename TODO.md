@@ -1,8 +1,6 @@
 - Ra2
 - Reset
 - Forward
-- Fusion corp
 - ledger
 - set
-- croccrew
 - OperationEndgame
